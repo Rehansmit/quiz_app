@@ -1,3 +1,13 @@
+function sinup{
+    document.getElementById("main_form")
+}
+
+
+
+
+
+
+
 
 
 
@@ -91,90 +101,4 @@ var questions = [
     ans: "Checks if two values are equal, considering their type"
   }
   ]
-  var index = 0;
-  var result = 0
-  
-  function renderQues() {
-    var container = document.getElementById("container");
-    var option = document.getElementsByName("option");
-    for (var i = 0; i < option.length; i++) {
-  
-        if (option[i].checked) {
-            if (questions[index - 1].ans === option[i].value) {
-                result++
-            }
-            console.log(option[i].value, questions[index - 1].ans, result);
-        }
-    }
-    if (!questions[index]) {
-        calculateResult()
-        var resultContainer = document.getElementById("result-container");
-        resultContainer.style.display = "block";
-        container.style.display = "none";
-  
-        console.log("Result: " + result);
-        return;
-    }
-    container.innerHTML = `
-     
-    
-  
-     <p class="question">${index + 1}
-     ${questions[index].question}</p><hr/>
-        <div class="options"> <label for="opt1"><input type="radio" name="option" id="opt1" value="${questions[index].opt1}"> 
-        ${questions[index].opt1}</label></div>
-        <div class="options"> <label for="opt2"><input type="radio" name="option" id="opt2" value="${questions[index].opt2}">
-        ${questions[index].opt2}</label></div>
-        <div class="options"> <label for="opt3"><input type="radio" name="option" id="opt3" value="${questions[index].opt3}">
-        ${questions[index].opt3}</label></div>
-        <div class="options"> <label for="opt4"><input type="radio" name="option" id="opt4" value="${questions[index].opt4}">
-        ${questions[index].opt4}</label></div>
-        <button id="prev" class="m-2 btn btn-primary" onclick="previousQuestion()">Previous</button>
-        <button id="next" class="m-2 btn btn-success" onclick="nextQuestion()">Next</button> `
-    var prevButton = document.getElementById("prev");
-  // Disable Next button initially and add event listener to radio buttons
-  var option = document.getElementsByName("option");
-  var nextButton = document.getElementById("next");
-  nextButton.disabled = true;  // Disable Next button initially
-  
-  // Add event listener to enable Next button when an option is selected
-  for (var i = 0; i < option.length; i++) {
-    option[i].addEventListener("change", function () {
-        if (document.querySelector('input[name="option"]:checked')) {
-            nextButton.disabled = false;  // Enable Next button when an option is selected
-        }
-    });
-  }
-  
-    function calculateResult() {
-        var score = document.getElementById("score");
-        var percentage = ((result / questions.length) * 100).toFixed(2)
-        var getData = localStorage.getItem("userData");
-  var parseData = JSON.parse(getData);
-        if (percentage >= 70) {
-            score.innerHTML = "Congratulations! "+parseData.name +" You passed the test.</br> You attempted " + result + " correct answers out of " + questions.length + " questions. </br> Your score is " + percentage + "%";
-        } else {
-            score.innerHTML = "Sorry! "+parseData.name +" You failed the test.</br> You attempted " + result + " correct answers out of " + questions.length + " questions. </br> Your score is " + percentage + "%";
-            score.style.color = "#dc3545";
-        }
-    }
-    prevButton.disabled = (index == 0);
-    if (index == questions.length - 1) {
-        nextButton.innerHTML = "Submit";
-        nextButton.classList.add("btn-danger")
-        nextButton
-        console.log(questions.length);
-    }
-  }
-  renderQues()
-  function nextQuestion() {
-    index++;
-    renderQues();
-  }
-  function previousQuestion() {
-    if (index > 0) {
-        index--;
-        renderQues();
-    }
-  }
   
