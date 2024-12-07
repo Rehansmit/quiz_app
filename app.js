@@ -1,19 +1,17 @@
-function sinup{
-    document.getElementById("main_form")
+function sinup(){
+    document.getElementById("main_form").classList.add("d-none");
+    document.getElementById("login_form").classList.add("d-none");
+
+    document.getElementById("signup_form").classList.remove("d-none");
+
 }
 
 
+function sinin(){
+    document.getElementById("main_form").classList.add("d-none");
+    document.getElementById("login_form").classList.remove("d-none");
 
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
